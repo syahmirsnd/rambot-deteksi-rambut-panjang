@@ -43,14 +43,52 @@ Aplikasi ini memungkinkan pengguna untuk mengunggah gambar dan mendeteksi apakah
 
 ## Usage
 
-### Menjalankan Aplikasi Flask
+### Menjalankan Aplikasi
 
-Untuk menjalankan aplikasi Flask, gunakan perintah berikut:
-```bash
-python main.py
+Untuk menjalankan aplikasi Flask dan memulai TailwindCSS dalam mode pengembangan, ikuti langkah-langkah berikut:
 
-### Menjalankan Tailwind CSS
+1. Jalankan server Flask dengan perintah berikut:
+    ```bash
+    python main.py
+    ```
 
-Untuk menjalankan Tailwind CSS, gunakan perintah berikut:
-```bash
-npm run dev
+   Server Flask akan berjalan di `http://127.0.0.1:5000/`.
+
+2. Di terminal lain, jalankan TailwindCSS dengan perintah:
+    ```bash
+    npm run dev
+    ```
+
+   Perintah ini akan memonitor perubahan pada file CSS dan mengompilasi ulang TailwindCSS secara otomatis. Pastikan kedua terminal berjalan bersamaan.
+
+## Features
+
+- **Upload Gambar**: Pengguna dapat mengunggah gambar untuk dideteksi.
+- **Deteksi Rambut Panjang**: Sistem menggunakan model machine learning untuk mendeteksi panjang rambut.
+- **Responsif**: Tampilan website didesain agar responsif di berbagai perangkat menggunakan TailwindCSS.
+
+## Dependencies
+
+- **Flask**: Framework Python untuk menangani backend dan routing.
+- **TailwindCSS**: Framework utilitas CSS untuk styling responsif.
+- **Numpy, OpenCV, TensorFlow/Keras**: Digunakan dalam model machine learning untuk deteksi gambar.
+- **Node.js & npm**: Digunakan untuk mengelola dependencies frontend dan mengembangkan TailwindCSS.
+
+## Configuration
+
+- **Flask Configuration**: Konfigurasi aplikasi Flask dapat disesuaikan di file `main.py`.
+- **TailwindCSS Configuration**: Konfigurasi TailwindCSS dapat diubah di file `tailwind.config.js`.
+
+## Troubleshooting
+
+- **Masalah saat menjalankan Flask**: Pastikan Anda telah menginstall semua dependencies Python yang diperlukan. Jika ada error, coba jalankan perintah `pip install -r requirements.txt` kembali.
+- **CSS tidak ter-update**: Jika perubahan pada styling tidak terlihat, pastikan `npm run dev` berjalan agar TailwindCSS dapat dikompilasi secara otomatis.
+- **Model Machine Learning Error**: Pastikan model yang digunakan sudah dilatih dengan benar dan file model tersedia di direktori proyek.
+
+## Contributors
+
+- BAMBI TEAM
+
+## License
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
