@@ -48,3 +48,9 @@ Aplikasi ini memungkinkan pengguna untuk mengunggah gambar dan mendeteksi apakah
 Untuk menjalankan aplikasi Flask, gunakan perintah berikut:
 ```bash
 python main.py
+
+### Menjalankan Tailwind CSS
+
+Untuk menjalankan Tailwind CSS, gunakan perintah berikut:
+```bash
+npm run dev
