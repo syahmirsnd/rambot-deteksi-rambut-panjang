@@ -11,9 +11,7 @@ mp_face_detection = mp.solutions.face_detection
 mp_face_mesh = mp.solutions.face_mesh
 mp_drawing = mp.solutions.drawing_utils
 
-# Fungsi untuk mengecek apakah rambut memenuhi dahi atau alis
-
-
+# Fungsi untuk mengecek apakah rambut memenuhi dahi
 def cek_rambut(frame, face_landmarks, detection):
     h, w, _ = frame.shape
     bbox = detection.location_data.relative_bounding_box
@@ -23,61 +21,44 @@ def cek_rambut(frame, face_landmarks, detection):
     box_height = int(bbox.height * h)
 
     # Perluas area untuk rambut
-    hair_y_min = max(y_min - int(0.5 * box_height), 0)
-    cv2.rectangle(frame, (x_min, hair_y_min),
-                  (x_min + box_width, y_min), (255, 0, 0), 2)
+    hair_y_min = max(y_min - int(0.5 * box_height), 0)  # Perluas ke atas
+    cv2.rectangle(frame, (x_min, hair_y_min), (x_min + box_width, y_min), (128, 128, 128), 2)
 
     # Ambil area rambut dari frame
     hair_region = frame[hair_y_min:y_min, x_min:x_min + box_width]
 
-    # Konversi ke ruang warna HSV untuk deteksi warna rambut
-    hsv = cv2.cvtColor(hair_region, cv2.COLOR_BGR2HSV)
+    # Pastikan area rambut tidak kosong sebelum konversi warna
+    if hair_region.size > 0:
+        hsv = cv2.cvtColor(hair_region, cv2.COLOR_BGR2HSV)
 
-    # Definisikan rentang warna rambut (untuk rambut gelap)
-    lower_hair = np.array([0, 0, 0])
-    upper_hair = np.array([180, 255, 50])
+        # Dapatkan landmark untuk dahi
+        forehead_landmark = face_landmarks.landmark[10]  # Landmark di bagian dahi
 
-    # Masking area rambut berdasarkan warna
-    mask = cv2.inRange(hsv, lower_hair, upper_hair)
-    hair_pixels = cv2.countNonZero(mask)
-    total_pixels = mask.size
-    hair_ratio = hair_pixels / total_pixels
+        # Konversi ke koordinat piksel
+        forehead_y = int(forehead_landmark.y * h)
 
-    # Dapatkan landmark untuk dahi dan alis
-    forehead_landmark = face_landmarks.landmark[10]  # Landmark di bagian dahi
-    left_eyebrow_landmark = face_landmarks.landmark[70]  # Landmark alis kiri
-    # Landmark alis kanan
-    right_eyebrow_landmark = face_landmarks.landmark[300]
+        # Deteksi rambut panjang berdasarkan area di dahi
+        if hair_y_min < forehead_y:
+            forehead_to_chin_dist = forehead_y - y_min
+            if forehead_to_chin_dist != 0:
+                covered_dahi_ratio = (forehead_y - hair_y_min) / forehead_to_chin_dist
+                if covered_dahi_ratio > 0.6:  # Ubah threshold ke nilai yang lebih tinggi
+                    cv2.putText(frame, 'Rambut Panjang', (x_min, hair_y_min - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+                    cv2.rectangle(frame, (x_min, hair_y_min), (x_min + box_width, y_min), (0, 0, 255), 2)
+                elif covered_dahi_ratio < 0.3:  # Ubah threshold untuk rambut pendek ke nilai yang lebih rendah
+                    cv2.putText(frame, 'Rambut Pendek', (x_min, hair_y_min - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                    cv2.rectangle(frame, (x_min, hair_y_min), (x_min + box_width, y_min), (0, 255, 0), 2)
+                else:
+                    cv2.putText(frame, 'Deteksi Tidak Pasti', (x_min, hair_y_min - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
 
-    # Konversi ke koordinat piksel
-    forehead_y = int(forehead_landmark.y * h)
-    left_eyebrow_y = int(left_eyebrow_landmark.y * h)
-    right_eyebrow_y = int(right_eyebrow_landmark.y * h)
-
-    # Jika rambut menutupi lebih dari 70% area di dahi, dianggap panjang
-    if hair_y_min < forehead_y:
-        # Pastikan tidak ada pembagian dengan nol
-        forehead_to_chin_dist = forehead_y - y_min
-        if forehead_to_chin_dist != 0:
-            covered_dahi_ratio = (forehead_y - hair_y_min) / \
-                forehead_to_chin_dist
-            if covered_dahi_ratio > 5:
-                cv2.putText(frame, 'Rambut Panjang (Menutupi Dahi)', (x_min, hair_y_min - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-            else:
-                cv2.putText(frame, 'Rambut Pendek (Dahi Terlihat)', (x_min, hair_y_min - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-        else:
-            # Jika terjadi pembagian dengan nol, kita langsung anggap dahi tidak tertutup penuh
-            cv2.putText(frame, 'Rambut Pendek (Dahi Terlihat)', (x_min, hair_y_min - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
     else:
-        cv2.putText(frame, 'Rambut Pendek (Alis Terlihat)', (x_min, hair_y_min - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        cv2.putText(frame, 'Tidak Ada Deteksi Rambut', (x_min, hair_y_min - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
 # Fungsi streaming frame video
-
-
 def generate_frames():
     cap = cv2.VideoCapture(0)
 
@@ -86,7 +67,7 @@ def generate_frames():
 
         while True:
             ret, frame = cap.read()
-            if not ret:
+            if not ret or frame is None:
                 break
 
             # Konversi warna BGR ke RGB
@@ -110,28 +91,20 @@ def generate_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-# Rute utama untuk menampilkan halaman HTML
-
-
 # Rute untuk halaman utama (index.html)
 @app.route('/')
 def index():
     return render_template('index.html')
 
 # Rute untuk halaman demo (demo.html)
-
-
 @app.route('/demo')
 def demo():
     return render_template('demo.html')
 
 # Rute untuk stream video
-
-
 @app.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
 
 # Jalankan aplikasi Flask
 if __name__ == '__main__':
