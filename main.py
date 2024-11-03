@@ -101,6 +101,11 @@ def index():
 def demo():
     return render_template('demo.html')
 
+# Rute untuk halaman demo (demo.html)
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 # Rute untuk stream video
 @app.route('/video_feed')
 def video_feed():

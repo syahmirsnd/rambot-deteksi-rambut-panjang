@@ -42,6 +42,9 @@ module.exports = {
         colorRedOrange: "#FF4612",
         colorGondola: "#1B1B1B",
       },
+      rotate: {
+        '7': '7deg',
+      }
     },
   },
   plugins: [],

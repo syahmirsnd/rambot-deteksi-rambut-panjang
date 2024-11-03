@@ -110,138 +110,146 @@
         <!-- Section Container -->
       </header>
       <!-- ...::: Header Section End :::... -->
-
-      <!-- Main Wrapper Start -->
       <main class="main-wrapper" style="margin-top: 100px">
         <div class="text-center">
           <h1
             class="font-clashGrotesk text-4xl font-semibold text-[#1B1B1B] sm:text-5xl md:text-6xl xl:text-7xl xxl:text-[90px]"
           >
-            Pastikan Hal Berikut!
+            Bambi!
           </h1>
-          <!-- Feature List -->
-          <ul
-            class="grid grid-cols-1 items-start gap-x-6 gap-y-[30px] md:grid-cols-2 lg:grid-cols-3 xl:items-stretch"
-            style="margin: 50px"
-          >
-            <!-- Feature Item -->
-            <li
-              class="jos flex gap-y-[30px] rounded-[5px] border-2 border-colorGondola bg-colorIvory p-6 odd:flex-col even:flex-col-reverse"
-              data-jos_animation="flip-left"
-            >
-              <!-- Image Block -->
-              <div>
-                <img
-                  src="/static/assets/img/images/th-2/feature-img-1.png"
-                  alt="feature-img-1"
-                  width="237"
-                  height="191"
-                  class="max-w-full"
-                />
-              </div>
-              <!-- Image Block -->
-
-              <!-- Content Block -->
-              <div>
-                <h4
-                  class="mb-4 font-clashGrotesk leading-[1.4] text-colorGondola"
-                >
-                  Wajah Lurus ke Kamera
-                </h4>
-                <p class="text-[#0C0C0C]">
-                  Usahakan untuk tidak mendongak atau menunduk saat proses
-                  pendeteksian.
-                </p>
-              </div>
-              <!-- Content Block -->
-            </li>
-            <!-- Feature Item -->
-            <!-- Feature Item -->
-            <li
-              class="jos flex gap-y-[30px] rounded-[5px] border-2 border-colorGondola bg-colorIvory p-6 odd:flex-col even:flex-col-reverse"
-              data-jos_animation="flip-left"
-            >
-              <!-- Image Block -->
-              <div>
-                <img
-                  src="/static/assets/img/images/th-2/feature-img-2.png"
-                  alt="feature-img-2"
-                  width="210"
-                  height="174"
-                  class="max-w-full"
-                />
-              </div>
-              <!-- Image Block -->
-
-              <!-- Content Block -->
-              <div>
-                <h4
-                  class="mb-4 font-clashGrotesk leading-[1.4] text-colorGondola"
-                >
-                  Cahaya Cukup
-                </h4>
-                <p class="text-[#0C0C0C]">
-                  Pencahayaan yang baik diperlukan untuk mendapatkan hasil yang
-                  lebih maksimal.
-                </p>
-              </div>
-              <!-- Content Block -->
-            </li>
-            <!-- Feature Item -->
-            <!-- Feature Item -->
-            <li
-              class="jos flex gap-y-[30px] rounded-[5px] border-2 border-colorGondola bg-colorIvory p-6 odd:flex-col even:flex-col-reverse"
-              data-jos_animation="flip-left"
-            >
-              <!-- Image Block -->
-              <div>
-                <img
-                  src="/static/assets/img/images/th-2/feature-img-3.png"
-                  alt="feature-img-3"
-                  width="240"
-                  height="174"
-                  class="max-w-full"
-                />
-              </div>
-              <!-- Image Block -->
-
-              <!-- Content Block -->
-              <div>
-                <h4
-                  class="mb-4 font-clashGrotesk leading-[1.4] text-colorGondola"
-                >
-                  Rapikan Rambut
-                </h4>
-                <p class="text-[#0C0C0C]">
-                  Pastikan rambutmu rapi, tidak tertutup aksesoris kepala
-                  apapun.
-                </p>
-              </div>
-              <!-- Content Block -->
-            </li>
-            <!-- Feature Item -->
-          </ul>
-          <!-- Feature List -->
         </div>
-
-        <!-- ...::: Video Section Start :::... -->
-        <div class="rounded-[5px] bg-colorRedOrange xxl:mx-[50px] py-10">
-          <div class="section-video">
-            <div class="mx-5 xxl:mx-[50px] my-20">
-              <div class="jos relative z-10 flex items-center justify-center">
+        <section class="section-content">
+          <div class="container space-y-20">
+            <!-- Ulangi blok ini untuk 5 konten -->
+            <div
+              class="flex flex-col-reverse xl:grid xl:grid-cols-2 xl:items-center xl:gap-x-20 mt-10"
+            >
+              <!-- Gambar di kiri -->
+              <div
+                class="inline-block max-w-[500px] bg-white p-3 xl:-rotate-[5deg]"
+                data-jos_animation="fade-right"
+              >
                 <img
-                  src="{{ url_for('video_feed') }}"
-                  alt="Video Stream"
-                  class="w-96 object-cover"
-                  style="border-radius: 10px"
+                  src="/static/assets/img/NumPy.png"
+                  alt="content-img-1"
+                  class="mx-auto w-full rounded-md"
+                />
+              </div>
+              <!-- Teks di kanan -->
+              <div>
+                <h2
+                  class="font-clashGroesk text-4xl font-semibold leading-[1.075] text-colorGondola"
+                >
+                  Achmad Syahmi Rasendriya
+                </h2>
+                <p class="text-[#0c0c0c]">Project Manager</p>
+              </div>
+            </div>
+
+            <!-- Blok konten selanjutnya, gambar di kanan -->
+            <div
+              class="flex flex-col xl:grid xl:grid-cols-2 xl:items-center xl:gap-x-20"
+            >
+              <!-- Teks di kiri -->
+              <div>
+                <h2
+                  class="font-clashGroesk text-4xl font-semibold leading-[1.075] text-colorGondola"
+                >
+                  Muthia Nurul Sa'adah
+                </h2>
+                <p class="text-[#0c0c0c]">System Analyst</p>
+              </div>
+              <!-- Gambar di kanan -->
+              <div
+                class="inline-block max-w-[500px] bg-white p-3 xl:-rotate-[5deg]"
+                data-jos_animation="fade-left"
+              >
+                <img
+                  src="/static/assets/img/NumPy.png"
+                  alt="content-img-2"
+                  class="mx-auto w-full rounded-md"
                 />
               </div>
             </div>
+            <div
+              class="flex flex-col-reverse xl:grid xl:grid-cols-2 xl:items-center xl:gap-x-20 mt-10"
+            >
+              <!-- Gambar di kiri -->
+              <div
+                class="inline-block max-w-[500px] bg-white p-3 xl:-rotate-[5deg]"
+                data-jos_animation="fade-right"
+              >
+                <img
+                  src="/static/assets/img/NumPy.png"
+                  alt="content-img-1"
+                  class="mx-auto w-full rounded-md"
+                />
+              </div>
+              <!-- Teks di kanan -->
+              <div>
+                <h2
+                  class="font-clashGroesk text-4xl font-semibold leading-[1.075] text-colorGondola"
+                >
+                  Wahyu Mustika Aji
+                </h2>
+                <p class="text-[#0c0c0c]">Programmer</p>
+              </div>
+            </div>
+
+            <!-- Blok konten selanjutnya, gambar di kanan -->
+            <div
+              class="flex flex-col xl:grid xl:grid-cols-2 xl:items-center xl:gap-x-20"
+            >
+              <!-- Teks di kiri -->
+              <div>
+                <h2
+                  class="font-clashGroesk text-4xl font-semibold leading-[1.075] text-colorGondola"
+                >
+                  Rizky Fadlurohman
+                </h2>
+                <p class="text-[#0c0c0c]">Designer</p>
+              </div>
+              <!-- Gambar di kanan -->
+              <div
+                class="inline-block max-w-[500px] bg-white p-3 xl:-rotate-[5deg]"
+                data-jos_animation="fade-left"
+              >
+                <img
+                  src="/static/assets/img/NumPy.png"
+                  alt="content-img-2"
+                  class="mx-auto w-full rounded-md"
+                />
+              </div>
+            </div>
+            <div
+              class="flex flex-col-reverse xl:grid xl:grid-cols-2 xl:items-center xl:gap-x-20 mt-10"
+            >
+              <!-- Gambar di kiri -->
+              <div
+                class="inline-block max-w-[500px] bg-white p-3 xl:-rotate-[5deg]"
+                data-jos_animation="fade-right"
+              >
+                <img
+                  src="/static/assets/img/NumPy.png"
+                  alt="content-img-1"
+                  class="mx-auto w-full rounded-md"
+                />
+              </div>
+              <!-- Teks di kanan -->
+              <div>
+                <h2
+                  class="font-clashGroesk text-4xl font-semibold leading-[1.075] text-colorGondola"
+                >
+                  Alya Putri Salsabila
+                </h2>
+                <p class="text-[#0c0c0c]">Quality Assurance</p>
+              </div>
+            </div>
+
+            <!-- Ulangi pola ini selang-seling hingga 5 kali -->
           </div>
-        </div>
-        <!-- ...::: Video Section End :::... -->
+        </section>
       </main>
-      <!--  Main Wrapper End -->
 
       <!-- ...::: Footer Section Start :::... -->
       <footer class="section-footer">
