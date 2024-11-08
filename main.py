@@ -37,16 +37,16 @@ def cek_rambut(frame, face_landmarks, detection):
         # Konversi ke koordinat piksel
         forehead_y = int(forehead_landmark.y * h)
 
-        # Deteksi rambut panjang berdasarkan area di dahi
+        # Deteksi rambut
         if hair_y_min < forehead_y:
             forehead_to_chin_dist = forehead_y - y_min
             if forehead_to_chin_dist != 0:
                 covered_dahi_ratio = (forehead_y - hair_y_min) / forehead_to_chin_dist
-                if covered_dahi_ratio > 0.6:  # Ubah threshold ke nilai yang lebih tinggi
+                if covered_dahi_ratio > 0.6:
                     cv2.putText(frame, 'Rambut Panjang', (x_min, hair_y_min - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
                     cv2.rectangle(frame, (x_min, hair_y_min), (x_min + box_width, y_min), (0, 0, 255), 2)
-                elif covered_dahi_ratio < 0.3:  # Ubah threshold untuk rambut pendek ke nilai yang lebih rendah
+                elif covered_dahi_ratio < 0.3: 
                     cv2.putText(frame, 'Rambut Pendek', (x_min, hair_y_min - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
                     cv2.rectangle(frame, (x_min, hair_y_min), (x_min + box_width, y_min), (0, 255, 0), 2)
