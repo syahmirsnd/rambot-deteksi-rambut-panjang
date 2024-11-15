@@ -101,7 +101,7 @@ def index():
 def demo():
     return render_template('demo.html')
 
-# Rute untuk halaman demo (demo.html)
+# Rute untuk halaman about (about.html)
 @app.route('/about')
 def about():
     return render_template('about.html')

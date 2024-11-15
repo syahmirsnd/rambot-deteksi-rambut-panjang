@@ -229,16 +229,24 @@
           <div class="section-video">
             <div class="mx-5 xxl:mx-[50px] my-20">
               <div class="jos relative z-10 flex items-center justify-center">
+                <!-- Video Stream -->
                 <img
                   src="{{ url_for('video_feed') }}"
                   alt="Video Stream"
                   class="w-96 object-cover"
                   style="border-radius: 10px"
                 />
+                <!-- Overlay Image -->
+                <img
+                  src="/static/assets/img/frame.png"
+                  alt="Overlay Image"
+                  class="absolute top-0 left-0 w-96 h-full object-cover"
+                  style="top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 10px; opacity: 0.8; align-items: center;"
+                />
               </div>
             </div>
           </div>
-        </div>
+        </div>     
         <!-- ...::: Video Section End :::... -->
       </main>
       <!--  Main Wrapper End -->
